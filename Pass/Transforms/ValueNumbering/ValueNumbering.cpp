@@ -48,7 +48,7 @@ void visitor(Function &F){
     // Here goes what you want to do with a pass
     	
 		string func_name = "main";
-	    errs() << "ValueNumbering:" << F.getName() << "\n";
+	//    errs() << "ValueNumbering:" << F.getName() << "\n";
 	    // Comment this line
         //if (F.getName() != func_name) return;
 	
@@ -59,6 +59,11 @@ void visitor(Function &F){
 	 	
             for (auto& inst : basic_block)
             {
+		if(inst.getOpcode() == Instruction::Call){
+		    errs()<< "---- Interprocedural Analysis Exists ------";
+		}
+		    
+		    
                 if(inst.getOpcode() == Instruction::Load){
 			string str;
 llvm::raw_string_ostream(str)<<inst;
