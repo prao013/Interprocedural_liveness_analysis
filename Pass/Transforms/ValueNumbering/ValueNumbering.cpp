@@ -65,7 +65,7 @@ llvm::raw_string_ostream(str)<<inst;
 			
 			string newinst(50,' ');
 			newinst=str;
-			errs() << newinst;
+		//	errs() << newinst;
 			string operand1=inst.getOperand(0)->getName().str();
 			Value *v = &inst;
 			stringstream ss;
@@ -81,7 +81,7 @@ llvm::raw_string_ostream(str)<<inst;
 			
 			//overwrite value with operand1's value
 			hashTable.insert(pair<string,int>(value,op1value));
-			errs() <<"\t" << op1value << " = " << op1value <<"\n";
+		//	errs() <<"\t" << op1value << " = " << op1value <<"\n";
 			//errs() <<"\t" << operand1 << " = " << value <<"\n";
 			
 			
@@ -92,7 +92,7 @@ llvm::raw_string_ostream(str)<<inst;
 			
 			string newinst(50,' ');
 			newinst=str;
-			errs() << newinst;
+		//	errs() << newinst;
 			string operand1=inst.getOperand(0)->getName().str();
 		//	Value *v = &inst;
 		//	stringstream ss;
@@ -131,7 +131,7 @@ llvm::raw_string_ostream(str)<<inst;
 			
 			
 			
-			errs() <<"\t" << op1value << " = " << op1value <<"\n";
+		//	errs() <<"\t" << op1value << " = " << op1value <<"\n";
 			//errs() <<"\t" << operand1 << " = " << operand2 <<"\n";
                 }
                 if (inst.isBinaryOp())
