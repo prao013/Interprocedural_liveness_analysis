@@ -159,7 +159,7 @@ llvm::raw_string_ostream(str)<<inst;
  		//	string operand3 = ss.str();
 		int j = 1;
 		
-                for (auto it = ptr->op_begin(); it != ptr->op_end(); ++it) {
+         /*       for (auto it = ptr->op_begin(); it != ptr->op_end(); ++it) {
                      if (j==1){
 			Value *v = dyn_cast<Value>(it);
             		stringstream ss;
@@ -200,7 +200,7 @@ llvm::raw_string_ostream(str)<<inst;
 			newinst=str;
 			errs() << newinst;
 		errs() <<"\t" <<"\t"<< binopvalue << " = " << op1value << " "+operation+" " <<op2value<< redundant <<"\n";
-		//errs() <<"\t" << operand3 << " = " << operand1  << operand2 <<"\n";	
+		//errs() <<"\t" << operand3 << " = " << operand1  << operand2 <<"\n";	*/
                 } // end if
 		  
             } // end for inst
