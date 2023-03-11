@@ -3,19 +3,11 @@ int minitest(int b){
   return b;
 }
 
-
-int test(int a, int b)
-{
-  int c = a + b;
-  int d = b + c;
-  int e = a + b;
-  int f = b + e;
-  
-  if(a>0){
-  minitest(a);
-  } 
-  
-  a=1;
-  return f;
-  
+void test() {
+	int a, b, c, e;
+	e = b + c;
+	if (e > 0) {
+		minitest(e);
+	} 
+	a = e + c;
 }
