@@ -101,7 +101,7 @@ void visitor(Function &F){
  		}
 		if(inst.getOpcode() == Instruction::Call){
  			Function* G= cast<CallInst>(inst).getCalledFunction();
-			Function& H=&G;
+			Function& H=*G;
 			errs()<<G->getName();
 	 	//	auto it=VARKILL[basic_block.getName().str()].find(operand1);
  		//	if ( it ==VARKILL[basic_block.getName().str()].end() )
