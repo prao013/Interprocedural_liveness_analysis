@@ -101,6 +101,30 @@ void visitor(Function &F){
  		}
             } // end for inst
         } // end for basicblockwrite
+		
+	map<string, set<string> > LIVEOUT;
+	for(int i=0;i<count;i++){
+		LIVEOUT[bbs[i]];
+		}
+	set<string>::iterator itrr;
+	set<string> HOLDER;
+	int i=2;
+	while(i>0){
+	for(int i=0;i<count;i++){
+ 	for (itrr = PREDBBMAP[bbs[i]].begin();
+ 	itrr != PREDBBMAP[bbs[i]].end(); itrr++)
+ 	{
+	set_difference(LIVEOUT[bbs[i]].begin(),LIVEOUT[bbs[i]].end(), VARKILL[bbs[i]].begin(),VARKILL[bbs[i]].end(),std::inserter(HOLDER, HOLDER.end()));
+	HOLDER.insert(UEVAR[bbs[i]].begin(),UEVAR[bbs[i]].end());
+	LIVEOUT[*itrr].insert(HOLDER.begin(),HOLDER.end());
+	HOLDER.clear();
+	}}
+	i--;
+	}
+	
+		
+		
+		
 	for (auto& basic_block : F)
         {	
 	if (F.getName() != func_name) {continue;}	
