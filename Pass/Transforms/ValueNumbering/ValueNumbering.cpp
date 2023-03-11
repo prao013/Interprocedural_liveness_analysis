@@ -34,6 +34,7 @@ namespace {
 		if(inst.getOpcode() == Instruction::Store){
  			string operand2=inst.getOperand(1)->getName().str();
 			kill.insert(operand2);
+		}
 	    }
 				
 	}
