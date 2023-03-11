@@ -8,5 +8,5 @@ void test() {
 	if (e > 0) {
 		minitest(e);
 	} 
-	e=a;
+	a=e+1;
 }
