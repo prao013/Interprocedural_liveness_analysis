@@ -20,7 +20,7 @@ void minitest1(int m,int n){
 
 
 void test() {
-    int a,m,n,d,f,g,e,b;
+    int a,m,n,d,f,g,e,b,c;
    c=m+n;
     if(c>0){
         minitest1(m,n);
