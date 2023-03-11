@@ -106,10 +106,10 @@ void visitor(Function &F){
 			set<string> available;
 			kill=killer(H);
 			available=availabler(kill,H);
-			set<int>::iterator itr;
+			set<string>::iterator itr;
   			for (itr = kill.begin();itr != kill.end(); itr++)
 			{VARKILL[basic_block.getName().str()].insert(*itr);}
-			set<int>::iterator itr1;
+			set<string>::iterator itr1;
   			for (it1r = available.begin();itr1 != available.end(); itr1++)
 			{UEVAR[basic_block.getName().str()].insert(*itr1);}
 			
