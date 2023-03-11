@@ -1,4 +1,4 @@
-void minitest(){
+void minitest(int e){
   e=1;
 }
 
