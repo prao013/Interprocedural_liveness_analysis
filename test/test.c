@@ -9,5 +9,5 @@ void test() {
 	if (e > 0) {
 		minitest();
 	} 
-	a=e+1;
+	a=b+1;
 }
