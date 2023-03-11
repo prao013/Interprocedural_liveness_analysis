@@ -86,7 +86,7 @@ namespace {
 	i--;
 	}
 	}	
-	auto it=VARKILL.find["entry"];
+	auto it=VARKILL.find("entry");
 	return it->second;
 	}
 	
@@ -159,7 +159,7 @@ namespace {
 	i--;
 	}
 	}
-	auto it=UEVAR.find["entry"];
+	auto it=UEVAR.find("entry");
 	return it->second;
 	}
 	
