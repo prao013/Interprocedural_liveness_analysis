@@ -110,7 +110,7 @@ void visitor(Function &F){
   			for (itr = kill.begin();itr != kill.end(); itr++)
 			{VARKILL[basic_block.getName().str()].insert(*itr);}
 			set<string>::iterator itr1;
-  			for (it1r = available.begin();itr1 != available.end(); itr1++)
+  			for (itr1 = available.begin();itr1 != available.end(); itr1++)
 			{UEVAR[basic_block.getName().str()].insert(*itr1);}
 			
 	 	//	auto it=VARKILL[basic_block.getName().str()].find(operand1);
