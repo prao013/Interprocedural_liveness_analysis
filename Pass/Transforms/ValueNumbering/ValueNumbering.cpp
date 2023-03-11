@@ -40,7 +40,7 @@ namespace {
 	}
 		return kill;
 	}
-	set<string> available(set<string> kill,Function &F)
+	set<string> availabler(set<string> kill,Function &F)
 	{
 		set<string> live;	
 	for (auto& basic_block : F)
@@ -102,7 +102,17 @@ void visitor(Function &F){
 		if(inst.getOpcode() == Instruction::Call){
  			Function* G= cast<CallInst>(inst).getCalledFunction();
 			Function& H=*G;
-			errs()<<G->getName();
+			set<string> kill;
+			set<string> available;
+			kill=killer(H);
+			available=availabler(kill,H);
+			set<int>::iterator itr;
+  			for (itr = kill.begin();itr != kill.end(); itr++)
+			{VARKILL[basic_block.getName().str()].insert(*itr);}
+			set<int>::iterator itr1;
+  			for (it1r = available.begin();itr1 != available.end(); itr1++)
+			{UEVAR[basic_block.getName().str()].insert(*itr1);}
+			
 	 	//	auto it=VARKILL[basic_block.getName().str()].find(operand1);
  		//	if ( it ==VARKILL[basic_block.getName().str()].end() )
 		//	{UEVAR[basic_block.getName().str()].insert(operand1);}
