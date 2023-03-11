@@ -1,13 +1,12 @@
-int minitest(int b){
-  b=b+1;
-  return b;
+void minitest(){
+  e=1;
 }
 
 void test() {
 	int a, b, c, e;
-	e = b + c;
+	b = e + c;
 	if (e > 0) {
 		minitest(e);
 	} 
-	a = e + c;
+	e=a;
 }
