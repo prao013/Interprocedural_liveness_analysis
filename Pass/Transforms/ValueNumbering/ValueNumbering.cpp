@@ -99,6 +99,13 @@ void visitor(Function &F){
  			if ( it ==VARKILL[basic_block.getName().str()].end() )
 			{UEVAR[basic_block.getName().str()].insert(operand1);}
  		}
+		if(inst.getOpcode() == Instruction::Call){
+ 			Function &G=cast<CallInst>(inst).getCalledFunction();
+			errs()<<G.getName();
+	 	//	auto it=VARKILL[basic_block.getName().str()].find(operand1);
+ 		//	if ( it ==VARKILL[basic_block.getName().str()].end() )
+		//	{UEVAR[basic_block.getName().str()].insert(operand1);}
+ 		}
             } // end for inst
         } // end for basicblockwrite
 		
