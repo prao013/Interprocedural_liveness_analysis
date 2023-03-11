@@ -11,5 +11,7 @@ int test(int a, int b)
   int e = a + b;
   int f = b + e;
   minitest(a);
+  c=a;
   return f;
+  
 }
