@@ -1,5 +1,5 @@
-void minitest1(int m,int n, int c){
-    int d,a,b,r,f,g,e;
+void minitest1(){
+    int d,a,b,r,f,g,e,m,n,c;
     d=a+b;
     r=f+g;
     if(r>0){
@@ -23,7 +23,7 @@ void test() {
     int a,m,n,d,f,g,e,b,c;
    c=m+n;
     if(c>0){
-        minitest1(m,n,c);
+        minitest1();
     }
     else{
         d=f+g;
