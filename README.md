@@ -18,3 +18,8 @@ After IA:
 
 CFG:
 ![image](https://user-images.githubusercontent.com/115338042/224463491-527552e3-8964-438f-bb7c-3c5c49e29344.png)
+
+IPA Liveness for Test1.c:
+![image](https://user-images.githubusercontent.com/115338042/224513985-673aa810-dc9e-4548-9245-1da4e850576c.png)
+CFG for test1.c:
+![image](https://user-images.githubusercontent.com/115338042/224514061-eb52225d-d2fc-477d-bbcb-15bc2781ed12.png)
