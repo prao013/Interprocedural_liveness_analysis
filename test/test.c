@@ -4,7 +4,7 @@ e=1;
 }
 
 void test() {
-	int a, b, c, e;
+	int a, b, c;
 	b = a + c;
 	if (e > 0) {
 		minitest();
