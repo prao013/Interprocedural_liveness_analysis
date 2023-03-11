@@ -24,6 +24,41 @@ using namespace std;
 using namespace llvm;
 
 namespace {
+	set<string> killer(Function &F){
+	set<string> kill;	
+		for (auto& basic_block : F)
+        {	
+	    	
+            for (auto& inst : basic_block)
+            {
+		if(inst.getOpcode() == Instruction::Store){
+ 			string operand2=inst.getOperand(1)->getName().str();
+			kill.insert(operand2);
+	    }
+				
+	}
+		return kill;
+	}
+	set<string> available(set<string> kill,Function &F)
+	{
+		set<string> live;	
+	for (auto& basic_block : F)
+        {	
+	 	
+            for (auto& inst : basic_block)
+            {
+		if(inst.getOpcode() == Instruction::Load){
+ 			string operand1=inst.getOperand(0)->getName().str();
+ 			auto it=kill.find(operand1);
+		 if ( it == kill.end() )
+			{live.insert(operand1);}
+ 		} 
+	    }
+	}
+		return live;
+	}
+	
+	
 void visitor(Function &F){
 		string func_name = "main";
         for (auto& basic_block : F)
@@ -31,7 +66,7 @@ void visitor(Function &F){
 	 	
             for (auto& inst : basic_block)
             {
-		errs()<<"checking";
+		    
             } // end for inst
         } // end for block
         
