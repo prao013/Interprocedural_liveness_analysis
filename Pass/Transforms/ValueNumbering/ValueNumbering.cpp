@@ -83,9 +83,22 @@ void visitor(Function &F){
 	PREDBBMAP[basic_block.getName().str()].insert(predecessor->getName().str());
 	}}
 
-            for (auto& inst : basic_block)
-            {
-		
+	map<string, set<string> > UEVAR;
+	map<string, set<string> > VARKILL;
+ 	for (auto& basic_block : F)
+ 	{
+	for (auto& inst : basic_block)
+ 	{
+		if(inst.getOpcode() == Instruction::Store){
+		string operand2=inst.getOperand(1)->getName().str();
+		VARKILL[basic_block.getName().str()].insert(operand2);
+ 		}
+ 		if(inst.getOpcode() == Instruction::Load){
+ 			string operand1=inst.getOperand(0)->getName().str();
+	 		auto it=VARKILL[basic_block.getName().str()].find(operand1);
+ 			if ( it ==VARKILL[basic_block.getName().str()].end() )
+			{UEVAR[basic_block.getName().str()].insert(operand1);}
+ 		}
             } // end for inst
         } // end for basicblockwrite
 	for (auto& basic_block : F)
