@@ -86,8 +86,6 @@ namespace {
 	i--;
 	}
 	}	
- 	} // end for basicblockread
-	}
 	auto it=VARKILL.find["entry"];
 	return it->second;
 	}
@@ -160,8 +158,6 @@ namespace {
 	}}
 	i--;
 	}
-	}	
- 	} // end for basicblockread
 	}
 	auto it=UEVAR.find["entry"];
 	return it->second;
