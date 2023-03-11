@@ -11,5 +11,5 @@ Output: 3/10
 
 Liveness Output:
 Before IA:
-![image](https://user-images.githubusercontent.com/115338042/224460848-81cf5279-7b53-46ce-88f4-98044966001b.png)
+
 After IA:
