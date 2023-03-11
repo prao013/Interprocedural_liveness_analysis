@@ -64,6 +64,10 @@ void visitor(Function &F){
 	string func_name = "test";
 	int count=0;
 	map<string, set<string> > PREDBBMAP;
+	
+	map<string, set<string> > LIVEOUT;
+	map<string, set<string> > UEVAR;
+	map<string, set<string> > VARKILL;
         for (auto& basic_block : F)
         {	
 	if (F.getName() != func_name) {continue;}
@@ -81,9 +85,6 @@ void visitor(Function &F){
 	BasicBlock* predecessor = *it;
 	PREDBBMAP[basic_block.getName().str()].insert(predecessor->getName().str());
 	}}
-
-	map<string, set<string> > UEVAR;
-	map<string, set<string> > VARKILL;
  	for (auto& basic_block : F)
  	{
 	for (auto& inst : basic_block)
@@ -101,7 +102,7 @@ void visitor(Function &F){
             } // end for inst
         } // end for basicblockwrite
 		
-	map<string, set<string> > LIVEOUT;
+	
 	for(int i=0;i<count;i++){
 		LIVEOUT[bbs[i]];
 		}
@@ -119,7 +120,7 @@ void visitor(Function &F){
 	}}
 	i--;
 	}
-		
+	}	
 		
 		
 	for (auto& basic_block : F)
@@ -146,7 +147,7 @@ void visitor(Function &F){
  		}
  	} // end for basicblockread
 	}
-}
+
 
 
 // New PM implementation
