@@ -61,7 +61,6 @@ namespace {
 	
 	
 void visitor(Function &F){
-		string func_name = "main";
 	errs()<<F.getName();
 	string func_name = "test";
         for (auto& basic_block : F)
