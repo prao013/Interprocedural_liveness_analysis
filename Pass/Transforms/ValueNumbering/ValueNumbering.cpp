@@ -62,12 +62,14 @@ namespace {
 	
 void visitor(Function &F){
 		string func_name = "main";
+	errs()<<F.getName();
         for (auto& basic_block : F)
         {	
-	 	
+	 errs() <<"\n"<< "-----"<<basic_block.getName()<<"-----"<<"\n"; 			
             for (auto& inst : basic_block)
             {
-		    
+		    errs() <<"\n"<< inst;
+
             } // end for inst
         } // end for block
         
