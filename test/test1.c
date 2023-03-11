@@ -19,7 +19,7 @@ void minitest1(int m,int n){
     }
 
 
-void test1() {
+void test() {
     int a,m,n,d,f,g,e,b;
    c=m+n;
     if(c>0){
