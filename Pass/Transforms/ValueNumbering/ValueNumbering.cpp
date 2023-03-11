@@ -77,8 +77,7 @@ void visitor(Function &F){
 	for (auto& basic_block : F)
  	{count++;}
 	for (auto& basic_block : F){
-	for (auto it = pred_begin(&basic_block), et =
-	pred_end(&basic_block); it != et; ++it){
+	for (auto it = pred_begin(&basic_block), et =pred_end(&basic_block); it != et; ++it){
 	BasicBlock* predecessor = *it;
 	PREDBBMAP[basic_block.getName().str()].insert(predecessor->getName().str());
 	}}
@@ -121,7 +120,7 @@ void visitor(Function &F){
 	i--;
 	}
 	
-		
+	}}	
 		
 		
 	for (auto& basic_block : F)
