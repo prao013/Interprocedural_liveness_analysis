@@ -79,7 +79,7 @@ namespace {
 	}
 	
 	}	
-	for (itr1 = VARKILL["entry"].begin(); itr1 != VARKILL["entry"].end(); itr1++)
+	for (itr1 = VARKILL["if.then"].begin(); itr1 != VARKILL["if.then"].end(); itr1++)
  		{
 		errs() <<" "<< *itr1;
 		}	
