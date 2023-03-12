@@ -143,14 +143,16 @@ namespace {
 		errs() <<" "<< *itr4;
 		}	
 	for(int i=0;i<count;i++){
+		if(!PREBBMAP[bbs[i].empty()){
  	for (itrr = PREDBBMAP[bbs[i]].begin();itrr != PREDBBMAP[bbs[i]].end(); itrr++)
  	{
+		
 		errs()<<bbs[i]<<"->"<<*itrr<<" ";
 	UEVAR[bbs[i]].insert(UEVAR[*itrr].begin(),UEVAR[*itrr].end());	
 	set_difference(UEVAR[bbs[i]].begin(),UEVAR[bbs[i]].end(), VARKILL[bbs[i]].begin(),VARKILL[bbs[i]].end(),std::inserter(HOLDER, HOLDER.end()));
 	}
 	UEVAR[bbs[i]]=HOLDER;
-	HOLDER.clear();
+	HOLDER.clear();}
 	}
 		errs()<<"Printing After Uevararara:";	
 	set<string>::iterator itr5;	
