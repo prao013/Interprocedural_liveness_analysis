@@ -124,7 +124,12 @@ namespace {
         } // end for basicblockwrite
 	set<string>::iterator itrr;	
 	set<string> HOLDER;
-	
+	errs()<<"Printing After Uevararara:";	
+	set<string>::iterator itr4;	
+	for (itr4 = UEVAR["if.end"].begin(); itr4 != UEVAR["if.end"].end(); itr4++)
+ 		{
+		errs() <<" "<< *itr4;
+		}	
 	for(int i=0;i<count;i++){
  	for (itrr = PREDBBMAP[bbs[i]].begin();itrr != PREDBBMAP[bbs[i]].end(); itrr++)
  	{
