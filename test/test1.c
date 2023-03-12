@@ -4,7 +4,7 @@ void minitest1(){
     r=f+g;
     if(r>0){
         e=a+b;
-        while(e){
+        while(2){
          a=r+d;
             r=a+b;
             
