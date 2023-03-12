@@ -67,7 +67,7 @@ namespace {
 	
  	for (itrr = PREDBBMAP[bbs[i]].begin();itrr != PREDBBMAP[bbs[i]].end(); itrr++)
  	{
-	if(HOLDER.empty(){HOLDER=VARKILL[*itrr];}
+	if(HOLDER.empty()){HOLDER=VARKILL[*itrr];}
 	  else{
 	set_intersection(HOLDER.begin(),HOLDER.end(), VARKILL[*itrr].begin(), VARKILL[*itrr].end(),std::inserter(HOLDER2, HOLDER2.begin()));	  
 	  }
