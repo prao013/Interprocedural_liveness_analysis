@@ -114,24 +114,18 @@ namespace {
 		string operand2=inst.getOperand(1)->getName().str();
 		VARKILL[basic_block.getName().str()].insert(operand2);
  		}
-            } // end for inst
-        } // end for basicblockwrite
-		
-	for (auto& basic_block : F)
- 	{
-	for (auto& inst : basic_block)
- 	{	
-		
- 		if(inst.getOpcode() == Instruction::Load){
+		if(inst.getOpcode() == Instruction::Load){
  			string operand1=inst.getOperand(0)->getName().str();
 	 		auto it=VARKILL[basic_block.getName().str()].find(operand1);
  			if ( it ==VARKILL[basic_block.getName().str()].end() )
 			{UEVAR[basic_block.getName().str()].insert(operand1);}
  		}
+            } // end for inst
+        } // end for basicblockwrite
 		
 	
-            } // end for inst
-        } // end for basicblockwrite	
+ 		
+		
 		
 		
 	set<string>::iterator itrr;	
