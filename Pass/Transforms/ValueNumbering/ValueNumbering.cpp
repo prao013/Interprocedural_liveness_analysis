@@ -42,6 +42,7 @@ namespace {
 	for (auto it = pred_begin(&basic_block), et =pred_end(&basic_block); it != et; ++it){
 	BasicBlock* predecessor = *it;
 	PREDBBMAP[predecessor->getName().str()].insert(basic_block.getName().str());
+		errs()<<predecessor->getName().str()<<"->"<<basic_block.getName().str()<<" ";
 	}}	
 	
 	for (auto& basic_block : F)
@@ -76,7 +77,7 @@ namespace {
 	else{ */
 	for (itrr = PREDBBMAP[bbs[i]].begin();itrr != PREDBBMAP[bbs[i]].end(); itrr++)
  	{
-		errs()<<bbs[i]<<"->"<<*itrr<<" ";
+		//errs()<<bbs[i]<<"->"<<*itrr<<" ";
 	VARKILL[bbs[i]].insert(VARKILL[*itrr].begin(),VARKILL[*itrr].end());
 	}
 	//}
