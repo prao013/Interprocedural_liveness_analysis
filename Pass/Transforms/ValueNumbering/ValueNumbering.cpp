@@ -30,7 +30,8 @@ namespace {
 	map<string, set<string> > PREDBBMAP;
 	map<string, set<string> > VARKILL;
 	for (auto& basic_block : F)
- 	{count++;}	
+ 	{count++;
+	PREDBBMAP[basic_block.getName().str()];}	
 	string bbs[count];
 	int i=0;
 	for (auto& basic_block : F)
