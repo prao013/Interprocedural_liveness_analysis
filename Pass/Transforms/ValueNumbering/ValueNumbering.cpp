@@ -66,8 +66,11 @@ namespace {
 	VARKILL[bbs[i]].clear();
 	set_intersection(HOLDER.begin(), HOLDER.end(), HOLDER2.begin(), HOLDER2.end(),std::inserter(VARKILL[bbs[i]], VARKILL[bbs[i]].begin()));
 	}	
-		
-		
+	errs()<<"Printing Varkill";	
+	for (itr1 = VARKILL["if.end"].begin(); itr1 != VARKILL["if.end"].end(); itr1++)
+ 		{
+		errs() <<" "<< *itr1;
+		}	
 		
 	auto it=VARKILL.find("if.end");
 	return it->second;
