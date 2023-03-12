@@ -20,7 +20,7 @@ CFG:
 ![image](https://user-images.githubusercontent.com/115338042/224463491-527552e3-8964-438f-bb7c-3c5c49e29344.png)
 
 IPA Liveness for Test1.c:
-![image](https://user-images.githubusercontent.com/115338042/224520575-c02307e4-8c75-4ef4-b566-e34f0f21aa4d.png)
+![image](https://user-images.githubusercontent.com/115338042/224525200-87443892-fb5b-42f0-bdf9-fb975f463e3c.png)
 
 CFG for test1.c:
 ![image](https://user-images.githubusercontent.com/115338042/224514061-eb52225d-d2fc-477d-bbcb-15bc2781ed12.png)
