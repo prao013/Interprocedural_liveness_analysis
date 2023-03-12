@@ -7,7 +7,7 @@ void minitest1(){
         while(e){
          a=r+d;
             r=a+b;
-            e--;
+            
         }
     }
     else{
