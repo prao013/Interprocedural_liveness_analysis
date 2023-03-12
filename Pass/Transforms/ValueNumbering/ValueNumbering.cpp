@@ -54,7 +54,7 @@ namespace {
 		VARKILL[basic_block.getName().str()].insert(operand2);
  		}	
 	}}	
-	set<string>::iterator itrr;	
+		
 	set<string> HOLDER;
 	set<string> HOLDER2;
 		errs()<<"Printing Varkill:";	
@@ -62,7 +62,7 @@ namespace {
 	errs()<<count<<" ";
 	for(int i=0;i<count;i++){
 	if(PREDBBMAP[bbs[i]].size()>1){
-	
+	set<string>::iterator itrr;
  	for (itrr = PREDBBMAP[bbs[i]].begin();itrr != PREDBBMAP[bbs[i]].end(); itrr++)
  	{
 	if(HOLDER.empty()){HOLDER=VARKILL[*itrr];}
@@ -75,6 +75,7 @@ namespace {
 	HOLDER2.clear();
 	}
 	else{ 
+	set<string>::iterator itrr;
 	for (itrr = PREDBBMAP[bbs[i]].begin();itrr != PREDBBMAP[bbs[i]].end(); itrr++)
  	{
 		errs()<<bbs[i]<<"->"<<*itrr<<" ";
