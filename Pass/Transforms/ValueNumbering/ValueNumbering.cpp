@@ -97,6 +97,7 @@ namespace {
 	for (auto& basic_block : F)
  	{count--;
 	bbs[count]=basic_block.getName().str();
+	 errs()<<bbs[count];
 	}
 	for (auto& basic_block : F)
  	{count++;}
