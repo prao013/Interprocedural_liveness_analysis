@@ -131,7 +131,7 @@ namespace {
  		}
             } // end for inst
         } // end for basicblockwrite
-		
+	set<string>::iterator itrr;	
 	set<string> HOLDER;
 	for(int i=0;i<count;i++){
  	for (itrr = PREDBBMAP[bbs[i]].begin();itrr != PREDBBMAP[bbs[i]].end(); itrr++)
