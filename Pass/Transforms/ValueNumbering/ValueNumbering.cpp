@@ -59,9 +59,10 @@ namespace {
 	set<string> HOLDER2;
 		errs()<<"Printing Varkill:";	
 	set<string>::iterator itr1;	
-	errs()<<count<<" ";
+	
 	for(int i=0;i<count;i++){
-	if(PREDBBMAP[bbs[i]].size()>0){
+	errs()<<PREDBBMAP[bbs[i]].size()<<" ";
+	if(PREDBBMAP[bbs[i]].size()>1){
 	set<string>::iterator itrr;
  	for (itrr = PREDBBMAP[bbs[i]].begin();itrr != PREDBBMAP[bbs[i]].end(); itrr++)
  	{
