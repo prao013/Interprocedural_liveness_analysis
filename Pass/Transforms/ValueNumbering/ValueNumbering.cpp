@@ -231,7 +231,7 @@ void visitor(Function &F){
   			for (itr1 = available.begin();itr1 != available.end(); itr1++)
 			{UEVAR[basic_block.getName().str()].insert(*itr1);}
 			
-			errs()<<----Liveness Analysis for the callee:----;
+			errs()<<"\n"<<"----Liveness Analysis for the callee:----"<<"\n";
 			visitor(H);
 			
 	 	//	auto it=VARKILL[basic_block.getName().str()].find(operand1);
