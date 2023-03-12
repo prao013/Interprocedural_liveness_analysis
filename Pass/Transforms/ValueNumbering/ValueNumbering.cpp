@@ -230,7 +230,9 @@ void visitor(Function &F){
 			set<string>::iterator itr1;
   			for (itr1 = available.begin();itr1 != available.end(); itr1++)
 			{UEVAR[basic_block.getName().str()].insert(*itr1);}
-		
+			
+			errs()<<----Liveness Analysis for the callee:----;
+			visitor(H);
 			
 	 	//	auto it=VARKILL[basic_block.getName().str()].find(operand1);
  		//	if ( it ==VARKILL[basic_block.getName().str()].end() )
