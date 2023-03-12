@@ -38,10 +38,12 @@ namespace {
 	bbs[0]=basic_block.getName().str();
 	if(i<count){i++;}
 	}	
+	for (auto& basic_block : F){	
 	for (auto it = pred_begin(&basic_block), et =pred_end(&basic_block); it != et; ++it){
 	BasicBlock* predecessor = *it;
 	PREDBBMAP[predecessor->getName().str()].insert(basic_block.getName().str());
 	}}	
+	
 	for (auto& basic_block : F)
  	{
 	for (auto& inst : basic_block)
