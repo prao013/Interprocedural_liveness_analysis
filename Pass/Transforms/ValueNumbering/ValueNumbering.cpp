@@ -115,7 +115,9 @@ namespace {
  		}
  		if(inst.getOpcode() == Instruction::Load){
  			string operand1=inst.getOperand(0)->getName().str();
-			UEVAR[basic_block.getName().str()].insert(operand1);
+	 		auto it=VARKILL[basic_block.getName().str()].find(operand1);
+ 			if ( it ==VARKILL[basic_block.getName().str()].end() )
+			{UEVAR[basic_block.getName().str()].insert(operand1);}
  		}
             } // end for inst
         } // end for basicblockwrite
