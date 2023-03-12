@@ -58,10 +58,7 @@ namespace {
 	set<string> HOLDER2;
 		errs()<<"Printing Varkill:";	
 	set<string>::iterator itr1;	
-	for (itr1 = VARKILL["if.end"].begin(); itr1 != VARKILL["if.end"].end(); itr1++)
- 		{
-		errs() <<" "<< *itr1;
-		}
+	
 	for(int i=0;i<count;i++){
 	if(PREDBBMAP[bbs[i]].size()>1){
 	
@@ -82,7 +79,10 @@ namespace {
 	}
 	
 	}	
-		
+	for (itr1 = VARKILL["while.end"].begin(); itr1 != VARKILL["while.end"].end(); itr1++)
+ 		{
+		errs() <<" "<< *itr1;
+		}	
 		
 	auto it=VARKILL.find("if.end");
 	return it->second;
