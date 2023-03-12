@@ -60,7 +60,7 @@ namespace {
 	set<string>::iterator itr1;	
 	
 	for(int i=0;i<count;i++){
-	if(PREDBBMAP[bbs[i]].size()>1){
+	/*if(PREDBBMAP[bbs[i]].size()>1){
 	
  	for (itrr = PREDBBMAP[bbs[i]].begin();itrr != PREDBBMAP[bbs[i]].end(); itrr++)
  	{
@@ -73,12 +73,12 @@ namespace {
 	HOLDER.clear();
 	HOLDER2.clear();
 	}
-	else{
+	else{ */
 	for (itrr = PREDBBMAP[bbs[i]].begin();itrr != PREDBBMAP[bbs[i]].end(); itrr++)
  	{
 	VARKILL[bbs[i]].insert(VARKILL[*itrr].begin(),VARKILL[*itrr].end());
 	}
-	}
+	//}
 	
 	}	
 	for (itr1 = VARKILL["if.then"].begin(); itr1 != VARKILL["if.then"].end(); itr1++)
