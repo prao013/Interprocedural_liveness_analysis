@@ -63,14 +63,24 @@ namespace {
 		errs() <<" "<< *itr1;
 		}
 	for(int i=0;i<count;i++){
+	if(PREDBBMAP[bbs[i]].size()>1){
 	
  	for (itrr = PREDBBMAP[bbs[i]].begin();itrr != PREDBBMAP[bbs[i]].end(); itrr++)
  	{
-	HOLDER.insert(VARKILL[*itrr].begin(),VARKILL[*itrr].end());
+	if(HOLDER.empty(){HOLDER=VARKILL[*itrr];}
+	  else{
+	set_intersection(HOLDER.begin(),HOLDER.end(), VARKILL[*itrr].begin(), VARKILL[*itrr].end(),std::inserter(HOLDER2, HOLDER2.begin()));	  
+	  }
 	}
-	HOLDER2=VARKILL[bbs[i]];
-	VARKILL[bbs[i]].clear();
-	set_intersection(HOLDER.begin(), HOLDER.end(), HOLDER2.begin(), HOLDER2.end(),std::inserter(VARKILL[bbs[i]], VARKILL[bbs[i]].begin()));
+	VARKILL[bbs[i]]=HOLDER2;
+	}
+	else{
+	for (itrr = PREDBBMAP[bbs[i]].begin();itrr != PREDBBMAP[bbs[i]].end(); itrr++)
+ 	{
+	VARKILL[bbs[i]].insert(VARKILL[*itrr].begin(),VARKILL[*itrr].end());
+	}
+	}
+	
 	}	
 		
 		
