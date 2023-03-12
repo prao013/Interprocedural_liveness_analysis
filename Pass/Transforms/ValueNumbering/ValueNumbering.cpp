@@ -143,7 +143,7 @@ namespace {
 		errs() <<" "<< *itr4;
 		}	
 	for(int i=0;i<count;i++){
-		if(!PREDBBMAP[bbs[i].empty()){
+		if(!PREDBBMAP[bbs[i]].empty()){
  	for (itrr = PREDBBMAP[bbs[i]].begin();itrr != PREDBBMAP[bbs[i]].end(); itrr++)
  	{
 		
