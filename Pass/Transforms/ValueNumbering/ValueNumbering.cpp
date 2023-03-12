@@ -138,9 +138,9 @@ namespace {
  		{
 		errs() <<" "<< *itr4;
 		}
-	
-	auto it=UEVAR.find("entry");
-	return it->second;
+	set<string> HOLDER2;
+	set_difference(UEVAR["entry"].begin(),UEVAR["entry"].end(), VARKILL["entry"].begin(),VARKILL["entry"].end(),std::inserter(HOLDER2, HOLDER2.end()));	
+	return HOLDER2;
 	}
 	
 	
