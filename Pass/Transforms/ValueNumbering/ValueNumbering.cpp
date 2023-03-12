@@ -99,16 +99,10 @@ namespace {
 	set<string> availabler(Function &F)
 	{
 	
-	string func_name = "minitest";
 	int count=0;
 	map<string, set<string> > PREDBBMAP;
-	
-	map<string, set<string> > LIVEOUT;
 	map<string, set<string> > UEVAR;
 	map<string, set<string> > VARKILL;
-        for (auto& basic_block : F)
-        {	
-	if (F.getName() != func_name) {continue;}
 	for (auto& basic_block : F)
  	{count++;}
 	string bbs[count];
@@ -133,32 +127,23 @@ namespace {
  		}
  		if(inst.getOpcode() == Instruction::Load){
  			string operand1=inst.getOperand(0)->getName().str();
-	 		auto it=VARKILL[basic_block.getName().str()].find(operand1);
- 			if ( it ==VARKILL[basic_block.getName().str()].end() )
-			{UEVAR[basic_block.getName().str()].insert(operand1);}
+			UEVAR[basic_block.getName().str()].insert(operand1);
  		}
             } // end for inst
         } // end for basicblockwrite
 		
-	
-	for(int i=0;i<count;i++){
-		LIVEOUT[bbs[i]];
-		}
-	set<string>::iterator itrr;
 	set<string> HOLDER;
-	int i=2;
-	while(i>0){
 	for(int i=0;i<count;i++){
  	for (itrr = PREDBBMAP[bbs[i]].begin();itrr != PREDBBMAP[bbs[i]].end(); itrr++)
  	{
-	set_difference(LIVEOUT[bbs[i]].begin(),LIVEOUT[bbs[i]].end(), VARKILL[bbs[i]].begin(),VARKILL[bbs[i]].end(),std::inserter(HOLDER, HOLDER.end()));
-	HOLDER.insert(UEVAR[bbs[i]].begin(),UEVAR[bbs[i]].end());
-	LIVEOUT[*itrr].insert(HOLDER.begin(),HOLDER.end());
+	UEVAR[bbs[i]].insert(UEVAR[itrr].begin(),UEVAR[itrr].end());	
+	set_difference(UEVAR[bbs[i]].begin(),UEVAR[bbs[i]].end(), VARKILL[bbs[i]].begin(),VARKILL[bbs[i]].end(),std::inserter(HOLDER, HOLDER.end()));
+	}
+	UEVAR[bbs[i]]=HOLDER;
 	HOLDER.clear();
-	}}
-	i--;
 	}
-	}
+	
+	
 	auto it=UEVAR.find("entry");
 	return it->second;
 	}
@@ -206,6 +191,7 @@ void visitor(Function &F){
 		if(inst.getOpcode() == Instruction::Call){
  			Function* G= cast<CallInst>(inst).getCalledFunction();
 			Function& H=*G;
+		
 			set<string> kill;
 			set<string> available;
 			kill=killer(H);
@@ -216,6 +202,7 @@ void visitor(Function &F){
 			set<string>::iterator itr1;
   			for (itr1 = available.begin();itr1 != available.end(); itr1++)
 			{UEVAR[basic_block.getName().str()].insert(*itr1);}
+		
 			
 	 	//	auto it=VARKILL[basic_block.getName().str()].find(operand1);
  		//	if ( it ==VARKILL[basic_block.getName().str()].end() )
