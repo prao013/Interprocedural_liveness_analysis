@@ -136,7 +136,7 @@ namespace {
 	}
 		errs()<<"Printing After Uevararara:";	
 	set<string>::iterator itr4;	
-	for (itr4 = PREDBBMAP["if.else"].begin(); itr4 != PREDBBMAP["if.else"].end(); itr4++)
+	for (itr4 = UEVAR["if.else"].begin(); itr4 != UEVAR["if.else"].end(); itr4++)
  		{
 		errs() <<" "<< *itr4;
 		}	
