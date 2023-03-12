@@ -134,7 +134,7 @@ namespace {
 	}
 		errs()<<"Printing After Uevararara:";	
 	set<string>::iterator itr4;	
-	for (itr4 = UEVAR["if.end"].begin(); itr4 != UEVAR["if.end"].end(); itr4++)
+	for (itr4 = UEVAR["entry"].begin(); itr4 != UEVAR["entry"].end(); itr4++)
  		{
 		errs() <<" "<< *itr4;
 		}
