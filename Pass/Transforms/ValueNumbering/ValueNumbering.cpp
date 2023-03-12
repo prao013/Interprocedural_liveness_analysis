@@ -176,7 +176,7 @@ namespace {
 	return HOLDER2;
 	}
 void visitor1(Function &F){
-	string func_name = "minitest";
+	string func_name = "minitest1";
 	int count=0;
 	map<string, set<string> > PREDBBMAP;
 	
