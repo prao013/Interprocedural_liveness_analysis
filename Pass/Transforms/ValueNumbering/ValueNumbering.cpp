@@ -43,7 +43,7 @@ namespace {
 	for (auto it = pred_begin(&basic_block), et =pred_end(&basic_block); it != et; ++it){
 	BasicBlock* predecessor = *it;
 	PREDBBMAP[basic_block.getName().str()].insert(predecessor->getName().str());
-		//errs()<<basic_block.getName().str()<<"<-"<<predecessor->getName().str()<<" ";
+		errs()<<basic_block.getName().str()<<"<-"<<predecessor->getName().str()<<" ";
 	}}	
 	
 	for (auto& basic_block : F)
