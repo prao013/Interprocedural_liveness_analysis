@@ -56,6 +56,12 @@ namespace {
 	set<string>::iterator itrr;	
 	set<string> HOLDER;
 	set<string> HOLDER2;
+		errs()<<"Printing Varkill:";	
+	set<string>::iterator itr1;	
+	for (itr1 = VARKILL["if.end"].begin(); itr1 != VARKILL["if.end"].end(); itr1++)
+ 		{
+		errs() <<" "<< *itr1;
+		}
 	for(int i=0;i<count;i++){
 	
  	for (itrr = PREDBBMAP[bbs[i]].begin();itrr != PREDBBMAP[bbs[i]].end(); itrr++)
@@ -66,12 +72,7 @@ namespace {
 	VARKILL[bbs[i]].clear();
 	set_intersection(HOLDER.begin(), HOLDER.end(), HOLDER2.begin(), HOLDER2.end(),std::inserter(VARKILL[bbs[i]], VARKILL[bbs[i]].begin()));
 	}	
-	errs()<<"Printing Varkill:";	
-	set<string>::iterator itr1;	
-	for (itr1 = VARKILL["if.end"].begin(); itr1 != VARKILL["if.end"].end(); itr1++)
- 		{
-		errs() <<" "<< *itr1;
-		}	
+		
 		
 	auto it=VARKILL.find("if.end");
 	return it->second;
@@ -120,6 +121,12 @@ namespace {
         } // end for basicblockwrite
 	set<string>::iterator itrr;	
 	set<string> HOLDER;
+		errs()<<"Printing Uevararara:";	
+	set<string>::iterator itr1;	
+	for (itr1 = UEVAR["entry"].begin(); itr1 != UEVAR["entry"].end(); itr1++)
+ 		{
+		errs() <<" "<< *itr1;
+		}
 	for(int i=0;i<count;i++){
  	for (itrr = PREDBBMAP[bbs[i]].begin();itrr != PREDBBMAP[bbs[i]].end(); itrr++)
  	{
@@ -129,12 +136,7 @@ namespace {
 	UEVAR[bbs[i]]=HOLDER;
 	HOLDER.clear();
 	}
-	errs()<<"Printing Uevararara:";	
-	set<string>::iterator itr1;	
-	for (itr1 = UEVAR["entry"].begin(); itr1 != UEVAR["entry"].end(); itr1++)
- 		{
-		errs() <<" "<< *itr1;
-		}
+	
 	
 	auto it=UEVAR.find("entry");
 	return it->second;
