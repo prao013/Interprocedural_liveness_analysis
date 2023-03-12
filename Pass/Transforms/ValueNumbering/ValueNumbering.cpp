@@ -124,12 +124,7 @@ namespace {
         } // end for basicblockwrite
 	set<string>::iterator itrr;	
 	set<string> HOLDER;
-		errs()<<"Printing After Uevararara:";	
-	set<string>::iterator itr4;	
-	for (itr4 = UEVAR["if.end"].begin(); itr4 != UEVAR["if.end"].end(); itr4++)
- 		{
-		errs() <<" "<< *itr4;
-		}
+	
 	for(int i=0;i<count;i++){
  	for (itrr = PREDBBMAP[bbs[i]].begin();itrr != PREDBBMAP[bbs[i]].end(); itrr++)
  	{
@@ -139,7 +134,12 @@ namespace {
 	UEVAR[bbs[i]]=HOLDER;
 	HOLDER.clear();
 	}
-		
+		errs()<<"Printing After Uevararara:";	
+	set<string>::iterator itr4;	
+	for (itr4 = PREDBBMAP["if.end"].begin(); itr4 != PREDBBMAP["if.end"].end(); itr4++)
+ 		{
+		errs() <<" "<< *itr4;
+		}	
 	set<string> HOLDER2;
 	set_difference(UEVAR["entry"].begin(),UEVAR["entry"].end(), VARKILL["entry"].begin(),VARKILL["entry"].end(),std::inserter(HOLDER2, HOLDER2.end()));	
 	return HOLDER2;
