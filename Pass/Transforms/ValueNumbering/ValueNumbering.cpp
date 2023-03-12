@@ -70,6 +70,8 @@ namespace {
 	  }
 	}
 	VARKILL[bbs[i]]=HOLDER2;
+	HOLDER.clear();
+	HOLDER2.clear();
 	}
 	else{
 	for (itrr = PREDBBMAP[bbs[i]].begin();itrr != PREDBBMAP[bbs[i]].end(); itrr++)
