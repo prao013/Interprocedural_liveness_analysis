@@ -61,7 +61,7 @@ namespace {
 	set<string>::iterator itr1;	
 	errs()<<count<<" ";
 	for(int i=0;i<count;i++){
-	if(PREDBBMAP[bbs[i]].size()>1){
+	if(PREDBBMAP[bbs[i]].size()>0){
 	set<string>::iterator itrr;
  	for (itrr = PREDBBMAP[bbs[i]].begin();itrr != PREDBBMAP[bbs[i]].end(); itrr++)
  	{
