@@ -141,10 +141,10 @@ namespace {
 	HOLDER.clear();
 	}
 		errs()<<"Printing After Uevararara:";	
-	set<string>::iterator itr4;	
-	for (itr4 = UEVAR["if.end"].begin(); itr4 != UEVAR["if.end"].end(); itr4++)
+	set<string>::iterator itr5;	
+	for (itr5 = UEVAR["if.end"].begin(); itr5 != UEVAR["if.end"].end(); itr5++)
  		{
-		errs() <<" "<< *itr4;
+		errs() <<" "<< *itr5;
 		}	
 	set<string> HOLDER2;
 	set_difference(UEVAR["entry"].begin(),UEVAR["entry"].end(), VARKILL["entry"].begin(),VARKILL["entry"].end(),std::inserter(HOLDER2, HOLDER2.end()));	
