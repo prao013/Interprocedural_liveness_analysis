@@ -76,6 +76,7 @@ namespace {
 	else{ */
 	for (itrr = PREDBBMAP[bbs[i]].begin();itrr != PREDBBMAP[bbs[i]].end(); itrr++)
  	{
+		errs()<<bbs[i]<<"->"<<*itrr<<" ";
 	VARKILL[bbs[i]].insert(VARKILL[*itrr].begin(),VARKILL[*itrr].end());
 	}
 	//}
@@ -153,7 +154,7 @@ namespace {
  	for (itrr = PREDBBMAP[bbs[i]].begin();itrr != PREDBBMAP[bbs[i]].end(); itrr++)
  	{
 		
-		errs()<<bbs[i]<<"->"<<*itrr<<" ";
+		
 	UEVAR[bbs[i]].insert(UEVAR[*itrr].begin(),UEVAR[*itrr].end());	
 	set_difference(UEVAR[bbs[i]].begin(),UEVAR[bbs[i]].end(), VARKILL[bbs[i]].begin(),VARKILL[bbs[i]].end(),std::inserter(HOLDER, HOLDER.end()));
 	}
