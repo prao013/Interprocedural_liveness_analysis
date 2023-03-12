@@ -2,7 +2,7 @@ void minitest1(){
     int d,a,b,r,f,g,e,m,n,c;
     d=a+b;
     r=f+g;
-    if(r>0){
+    if(1){
         e=a+b;
         while(2){
          a=r+d;
