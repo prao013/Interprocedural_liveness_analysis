@@ -36,7 +36,7 @@ namespace {
 	int i=0;
 	for (auto& basic_block : F)
  	{
-	bbs[0]=basic_block.getName().str();
+	bbs[i]=basic_block.getName().str();
 	if(i<count){i++;}
 	}	
 	for (auto& basic_block : F){	
