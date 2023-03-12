@@ -131,12 +131,17 @@ namespace {
  	for (itrr = PREDBBMAP[bbs[i]].begin();itrr != PREDBBMAP[bbs[i]].end(); itrr++)
  	{
 	UEVAR[bbs[i]].insert(UEVAR[*itrr].begin(),UEVAR[*itrr].end());	
-	set_difference(UEVAR[bbs[i]].begin(),UEVAR[bbs[i]].end(), VARKILL[bbs[i]].begin(),VARKILL[bbs[i]].end(),std::inserter(HOLDER, HOLDER.end()));
+	set_difference(UEVAR[bbs[i]].begin(),UEVAR[bbs[i]].end(), VARKILL[*itrr].begin(),VARKILL[*itrr].end(),std::inserter(HOLDER, HOLDER.end()));
 	}
 	UEVAR[bbs[i]]=HOLDER;
 	HOLDER.clear();
 	}
-	
+		errs()<<"Printing After Uevararara:";	
+	set<string>::iterator itr4;	
+	for (itr4 = UEVAR["entry"].begin(); itr4 != UEVAR["entry"].end(); itr4++)
+ 		{
+		errs() <<" "<< *itr4;
+		}
 	
 	auto it=UEVAR.find("entry");
 	return it->second;
