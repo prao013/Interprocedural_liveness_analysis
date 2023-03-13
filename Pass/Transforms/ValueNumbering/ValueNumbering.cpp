@@ -147,11 +147,11 @@ namespace {
 		
 	set<string>::iterator itrr;	
 	set<string> HOLDER;
-	errs()<<"Printing After Uevararara:";	
+	//errs()<<"Printing After Uevararara:";	
 	set<string>::iterator itr4;	
 	for (itr4 = UEVAR["if.end"].begin(); itr4 != UEVAR["if.end"].end(); itr4++)
  		{
-		errs() <<" "<< *itr4;
+	//	errs() <<" "<< *itr4;
 		}	
 	for(int i=0;i<count;i++){
 		if(!PREDBBMAP[bbs[i]].empty()){
@@ -298,6 +298,7 @@ void visitor(Function &F){
         for (auto& basic_block : F)
         {	
 	if (F.getName() != func_name) {continue;}
+	errs()<<"\n"<<"----Interprocedural Analysis for the Test():----"<<"\n";	
 	for (auto& basic_block : F)
  	{count++;}
 	string bbs[count];
@@ -390,7 +391,7 @@ void visitor(Function &F){
 	for (auto& basic_block : F)
        {	
 	if (F.getName() != func_name) {continue;}	
-	errs()<<"\n"<<"----Interprocedural Analysis for the Test():----"<<"\n";	
+	
 	errs() <<"\n"<< "-----"<<basic_block.getName()<<"-----"<<"\n";
 	errs() <<"\n"<< "UEVAR:";
 	set<string>::iterator itr;
