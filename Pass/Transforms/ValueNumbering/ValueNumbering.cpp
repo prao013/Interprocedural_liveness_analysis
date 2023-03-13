@@ -386,11 +386,11 @@ void visitor(Function &F){
 	}
 	}	
 		
-	errs()<<"\n"<<"----Interprocedural Analysis for the Test():----"<<"\n";	
+	
 	for (auto& basic_block : F)
        {	
 	if (F.getName() != func_name) {continue;}	
-	
+	errs()<<"\n"<<"----Interprocedural Analysis for the Test():----"<<"\n";	
 	errs() <<"\n"<< "-----"<<basic_block.getName()<<"-----"<<"\n";
 	errs() <<"\n"<< "UEVAR:";
 	set<string>::iterator itr;
