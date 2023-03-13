@@ -291,7 +291,7 @@ void visitor(Function &F){
 	string func_name = "test";
 	int count=0;
 	map<string, set<string> > PREDBBMAP;
-	
+	map<string, set<string> > SUCCBBMAP;
 	map<string, set<string> > LIVEOUT;
 	map<string, set<string> > UEVAR;
 	map<string, set<string> > VARKILL;
@@ -311,6 +311,7 @@ void visitor(Function &F){
 	for (auto it = pred_begin(&basic_block), et =pred_end(&basic_block); it != et; ++it){
 	BasicBlock* predecessor = *it;
 	PREDBBMAP[basic_block.getName().str()].insert(predecessor->getName().str());
+		SUCCBBMAP[predecessor->getName().str()].insert(basic_block.getName().str());
 	}}
 	
  	for (auto& basic_block : F)
@@ -345,7 +346,7 @@ void visitor(Function &F){
 			set<string> HOLDER4;
 			errs()<<"\n"<<"----Liveness Analysis for the callee:----"<<"\n";
 			set<string>::iterator itrr1;
-			for (itrr1 = PREDBBMAP[basic_block.getName().str()].begin();itrr1 != PREDBBMAP[basic_block.getName().str()].end(); itrr1++)
+			for (itrr1 = SUCCBBMAP[basic_block.getName().str()].begin();itrr1 != SUCCBBMAP[basic_block.getName().str()].end(); itrr1++)
  	{
 				errs()<<"!!!!"<<*itrr1<<"!!!!";
 				set_difference(LIVEOUT[*itrr1].begin(),LIVEOUT[*itrr1].end(), VARKILL[*itrr1].begin(),VARKILL[*itrr1].end(),std::inserter(HOLDER4, HOLDER4.end()));
