@@ -242,7 +242,7 @@ void visitor1(Function &F,set<string> HOLDER3){
 	
 	for(int i=0;i<count;i++){
 		LIVEOUT[bbs[i]];
-		i(i==count-1){LIVEOUT[bbs[i]]=HOLDER3;}
+		if(i==count-1){LIVEOUT[bbs[i]]=HOLDER3;}
 		}
 	set<string>::iterator itrr;
 	set<string> HOLDER;
@@ -291,7 +291,7 @@ void visitor(Function &F){
 	string func_name = "test";
 	int count=0;
 	map<string, set<string> > PREDBBMAP;
-	Function& H;
+	
 	map<string, set<string> > LIVEOUT;
 	map<string, set<string> > UEVAR;
 	map<string, set<string> > VARKILL;
@@ -329,7 +329,7 @@ void visitor(Function &F){
  		}
 		if(inst.getOpcode() == Instruction::Call){
  			Function* G= cast<CallInst>(inst).getCalledFunction();
-			H=*G;
+			Function& H=*G;
 		
 			set<string> kill;
 			set<string> available;
@@ -345,7 +345,7 @@ void visitor(Function &F){
 			set<string> HOLDER4;
 			errs()<<"\n"<<"----Liveness Analysis for the callee:----"<<"\n";
 			set<string>::iterator itrr1;
-			for (itrr1 = PREDBBMAP[bbs[i]].begin();itrr1 != PREDBBMAP[bbs[i]].end(); itrr1++)
+			for (itrr1 = PREDBBMAP[basic_block.getName().str()].begin();itrr1 != PREDBBMAP[basic_block.getName().str()].end(); itrr1++)
  	{
 				set_difference(LIVEOUT[*itrr1].begin(),LIVEOUT[*itrr1].end(), VARKILL[*itrr1].begin(),VARKILL[*itrr1].end(),std::inserter(HOLDER4, HOLDER4.end()));
 	HOLDER4.insert(UEVAR[*itrr1].begin(),UEVAR[*itrr1].end());
