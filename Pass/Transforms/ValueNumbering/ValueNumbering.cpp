@@ -165,11 +165,11 @@ namespace {
 	UEVAR[bbs[i]]=HOLDER;
 	HOLDER.clear();}
 	}
-		errs()<<"Printing After Uevararara:";	
+	//	errs()<<"Printing After Uevararara:";	
 	set<string>::iterator itr5;	
 	for (itr5 = UEVAR["if.end"].begin(); itr5 != UEVAR["if.end"].end(); itr5++)
  		{
-		errs() <<" "<< *itr5;
+	//	errs() <<" "<< *itr5;
 		}	
 	set<string> HOLDER2;
 	set_difference(UEVAR["entry"].begin(),UEVAR["entry"].end(), VARKILL["entry"].begin(),VARKILL["entry"].end(),std::inserter(HOLDER2, HOLDER2.end()));	
@@ -298,7 +298,7 @@ void visitor(Function &F){
         for (auto& basic_block : F)
         {	
 	if (F.getName() != func_name) {continue;}
-	errs()<<"\n"<<"----Interprocedural Analysis for the Test():----"<<"\n";	
+	
 	for (auto& basic_block : F)
  	{count++;}
 	string bbs[count];
@@ -385,6 +385,7 @@ void visitor(Function &F){
 	}}
 	i--;
 	}
+	errs()<<"\n"<<"----Interprocedural Analysis for the Test():----"<<"\n";	
 	}	
 		
 	
