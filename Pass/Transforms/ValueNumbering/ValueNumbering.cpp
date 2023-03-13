@@ -242,7 +242,7 @@ void visitor1(Function &F,set<string> HOLDER3){
 	
 	for(int i=0;i<count;i++){
 		LIVEOUT[bbs[i]];
-		if(i==count-1){LIVEOUT[bbs[i]]=HOLDER3;}
+		if(i==0){LIVEOUT[bbs[i]]=HOLDER3;}
 		}
 	set<string>::iterator itrr;
 	set<string> HOLDER;
