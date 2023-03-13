@@ -175,7 +175,7 @@ namespace {
 	set_difference(UEVAR["entry"].begin(),UEVAR["entry"].end(), VARKILL["entry"].begin(),VARKILL["entry"].end(),std::inserter(HOLDER2, HOLDER2.end()));	
 	return HOLDER2;
 	}
-void visitor1(Function &F){
+void visitor1(Function &F,set<string> HOLDER3){
 	string func_name = "minitest1";
 	int count=0;
 	map<string, set<string> > PREDBBMAP;
@@ -242,6 +242,7 @@ void visitor1(Function &F){
 	
 	for(int i=0;i<count;i++){
 		LIVEOUT[bbs[i]];
+		i(i==count-1){LIVEOUT[bbs[i]]=HOLDER3;}
 		}
 	set<string>::iterator itrr;
 	set<string> HOLDER;
@@ -290,7 +291,7 @@ void visitor(Function &F){
 	string func_name = "test";
 	int count=0;
 	map<string, set<string> > PREDBBMAP;
-	
+	Function& H;
 	map<string, set<string> > LIVEOUT;
 	map<string, set<string> > UEVAR;
 	map<string, set<string> > VARKILL;
@@ -311,6 +312,7 @@ void visitor(Function &F){
 	BasicBlock* predecessor = *it;
 	PREDBBMAP[basic_block.getName().str()].insert(predecessor->getName().str());
 	}}
+	
  	for (auto& basic_block : F)
  	{
 	for (auto& inst : basic_block)
@@ -327,7 +329,7 @@ void visitor(Function &F){
  		}
 		if(inst.getOpcode() == Instruction::Call){
  			Function* G= cast<CallInst>(inst).getCalledFunction();
-			Function& H=*G;
+			H=*G;
 		
 			set<string> kill;
 			set<string> available;
@@ -339,9 +341,21 @@ void visitor(Function &F){
 			set<string>::iterator itr1;
   			for (itr1 = available.begin();itr1 != available.end(); itr1++)
 			{UEVAR[basic_block.getName().str()].insert(*itr1);}
-			
+			set<string> HOLDER3;
+			set<string> HOLDER4;
 			errs()<<"\n"<<"----Liveness Analysis for the callee:----"<<"\n";
-			visitor1(H);
+			set<string>::iterator itrr1;
+			for (itrr1 = PREDBBMAP[bbs[i]].begin();itrr1 != PREDBBMAP[bbs[i]].end(); itrr1++)
+ 	{
+				set_difference(LIVEOUT[*itrr1].begin(),LIVEOUT[*itrr1].end(), VARKILL[*itrr1].begin(),VARKILL[*itrr1].end(),std::inserter(HOLDER4, HOLDER4.end()));
+	HOLDER4.insert(UEVAR[*itrr1].begin(),UEVAR[*itrr1].end());
+				HOLDER3.insert(HOLDER4.begin(),HOLDER4.end());
+				HOLDER4.clear();
+	}
+			
+			
+			
+			visitor1(H,HOLDER3);
 			
 	 	//	auto it=VARKILL[basic_block.getName().str()].find(operand1);
  		//	if ( it ==VARKILL[basic_block.getName().str()].end() )
