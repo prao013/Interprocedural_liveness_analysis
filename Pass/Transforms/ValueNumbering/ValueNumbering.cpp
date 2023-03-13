@@ -314,8 +314,8 @@ void visitor(Function &F){
 		SUCCBBMAP[predecessor->getName().str()].insert(basic_block.getName().str());
 	}}
 	
- 	for (auto& basic_block : F)
- 	{
+// 	for (auto& basic_block : F)
+// 	{
 	for (auto& inst : basic_block)
  	{
 		if(inst.getOpcode() == Instruction::Store){
@@ -364,7 +364,7 @@ void visitor(Function &F){
 		//	{UEVAR[basic_block.getName().str()].insert(operand1);}
  		}
             } // end for inst
-      } // end for basicblockwrite
+  //    } // end for basicblockwrite
 		
 	
 	for(int i=0;i<count;i++){
@@ -387,8 +387,8 @@ void visitor(Function &F){
 	}	
 		
 	errs()<<"\n"<<"----Interprocedural Analysis for the Test():----"<<"\n";	
-//	for (auto& basic_block : F)
-  //      {	
+	for (auto& basic_block : F)
+       {	
 	if (F.getName() != func_name) {continue;}	
 	
 	errs() <<"\n"<< "-----"<<basic_block.getName()<<"-----"<<"\n";
