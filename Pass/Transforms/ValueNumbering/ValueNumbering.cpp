@@ -43,7 +43,7 @@ namespace {
 	for (auto it = pred_begin(&basic_block), et =pred_end(&basic_block); it != et; ++it){
 	BasicBlock* predecessor = *it;
 	PREDBBMAP[basic_block.getName().str()].insert(predecessor->getName().str());
-		errs()<<basic_block.getName().str()<<"<-"<<predecessor->getName().str()<<" ";
+	//	errs()<<basic_block.getName().str()<<"<-"<<predecessor->getName().str()<<" ";
 	}}	
 	
 	for (auto& basic_block : F)
@@ -58,11 +58,11 @@ namespace {
 		
 	set<string> HOLDER;
 	set<string> HOLDER2;
-		errs()<<"Printing Varkill:";	
+	//	errs()<<"Printing Varkill:";	
 	set<string>::iterator itr1;	
 	
 	for(int i=0;i<count;i++){
-	errs()<<i<<bbs[i]<<PREDBBMAP[bbs[i]].size()<<" ";
+	//errs()<<i<<bbs[i]<<PREDBBMAP[bbs[i]].size()<<" ";
 	if(PREDBBMAP[bbs[i]].size()>1){
 	set<string>::iterator itrr;
  	for (itrr = PREDBBMAP[bbs[i]].begin();itrr != PREDBBMAP[bbs[i]].end(); itrr++)
@@ -80,7 +80,7 @@ namespace {
 	set<string>::iterator itrr;
 	for (itrr = PREDBBMAP[bbs[i]].begin();itrr != PREDBBMAP[bbs[i]].end(); itrr++)
  	{
-		errs()<<bbs[i]<<"->"<<*itrr<<" ";
+	//	errs()<<bbs[i]<<"->"<<*itrr<<" ";
 	VARKILL[bbs[i]].insert(VARKILL[*itrr].begin(),VARKILL[*itrr].end());
 	}
 	}
@@ -88,7 +88,7 @@ namespace {
 	}	
 	for (itr1 = VARKILL["if.else"].begin(); itr1 != VARKILL["if.else"].end(); itr1++)
  		{
-		errs() <<" "<< *itr1;
+	//	errs() <<" "<< *itr1;
 		}	
 		
 	auto it=VARKILL.find("if.end");
