@@ -347,7 +347,7 @@ void visitor(Function &F){
 			set<string>::iterator itrr1;
 			for (itrr1 = PREDBBMAP[basic_block.getName().str()].begin();itrr1 != PREDBBMAP[basic_block.getName().str()].end(); itrr1++)
  	{
-				errs()<<"!!!!"<<*itrr1<"!!!!"<<;
+				errs()<<"!!!!"<<*itrr1<"!!!!";
 				set_difference(LIVEOUT[*itrr1].begin(),LIVEOUT[*itrr1].end(), VARKILL[*itrr1].begin(),VARKILL[*itrr1].end(),std::inserter(HOLDER4, HOLDER4.end()));
 	HOLDER4.insert(UEVAR[*itrr1].begin(),UEVAR[*itrr1].end());
 				HOLDER3.insert(HOLDER4.begin(),HOLDER4.end());
