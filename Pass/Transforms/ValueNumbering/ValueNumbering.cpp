@@ -114,7 +114,7 @@ namespace {
 	for (auto& basic_block : F)
  	{count--;
 	bbs[count]=basic_block.getName().str();
-	 errs()<<bbs[count];
+	// errs()<<bbs[count];
 	}
 	for (auto& basic_block : F)
  	{count++;}
@@ -385,10 +385,10 @@ void visitor(Function &F){
 	}}
 	i--;
 	}
-	errs()<<"\n"<<"----Interprocedural Analysis for the Test():----"<<"\n";	
+	
 	}	
 		
-	
+	errs()<<"\n"<<"----Interprocedural Analysis for the Test():----"<<"\n";	
 	for (auto& basic_block : F)
        {	
 	if (F.getName() != func_name) {continue;}	
