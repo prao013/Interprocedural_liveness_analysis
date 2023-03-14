@@ -423,7 +423,7 @@ llvmGetPassPluginInfo() {
         [](StringRef Name, FunctionPassManager &FPM,
         ArrayRef<PassBuilder::PipelineElement>) {
           if(Name == "IPA-Liveness"){
-            FPM.addPass(IPALiveness());
+            FPM.addPass(IPALivenessPass());
             return true;
           }
           return false;
