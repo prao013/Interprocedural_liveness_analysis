@@ -374,7 +374,8 @@ void visitor(Function &F){
 	}
 	
 	if(FUNCLIVE.size()!=0){
-	for(std::map<Key,Val>::iterator iter = FUNCLIVE.begin(); iter != FUNCLIVE.end(); ++iter)
+	map<Function&, BasicBlock&>::iterator iter;
+	for(iter= FUNCLIVE.begin(); iter != FUNCLIVE.end(); ++iter)
 	{
 		
 	set<string> HOLDER3;
@@ -390,7 +391,7 @@ void visitor(Function &F){
 				HOLDER4.clear();
 				errs()<<UEVAR[*itrr1].size();
 	}
-	}
+	
 			
 			
 	visitor1(iter->first,HOLDER3);	
