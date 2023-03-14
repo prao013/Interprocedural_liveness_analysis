@@ -374,7 +374,7 @@ void visitor(Function &F){
 	}
 	}
 	if(FUNCLIVE.size()!=0){
-	map<Function&, string>::iterator iter;
+	std::map<Function&, string>::iterator iter;
 	for(iter= FUNCLIVE.begin(); iter != FUNCLIVE.end(); ++iter)
 	{
 		
