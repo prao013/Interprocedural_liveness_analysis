@@ -1,5 +1,3 @@
-
- 
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/ADT/SmallString.h"
@@ -24,8 +22,8 @@ using namespace std;
 using namespace llvm;
 
 namespace {
+	//Function to Calculate the VARKILL of the Callee (The Flow Sensitive method)
 	set<string> killer(Function &F){
-	
 	int count=0;
 	map<string, set<string> > PREDBBMAP;
 	map<string, set<string> > VARKILL;
@@ -43,7 +41,6 @@ namespace {
 	for (auto it = pred_begin(&basic_block), et =pred_end(&basic_block); it != et; ++it){
 	BasicBlock* predecessor = *it;
 	PREDBBMAP[basic_block.getName().str()].insert(predecessor->getName().str());
-	//	errs()<<basic_block.getName().str()<<"<-"<<predecessor->getName().str()<<" ";
 	}}	
 	
 	for (auto& basic_block : F)
@@ -58,11 +55,9 @@ namespace {
 		
 	set<string> HOLDER;
 	set<string> HOLDER2;
-	//	errs()<<"Printing Varkill:";	
 	set<string>::iterator itr1;	
 	
 	for(int i=0;i<count;i++){
-	//errs()<<i<<bbs[i]<<PREDBBMAP[bbs[i]].size()<<" ";
 	if(PREDBBMAP[bbs[i]].size()>1){
 	set<string>::iterator itrr;
  	for (itrr = PREDBBMAP[bbs[i]].begin();itrr != PREDBBMAP[bbs[i]].end(); itrr++)
@@ -80,27 +75,21 @@ namespace {
 	set<string>::iterator itrr;
 	for (itrr = PREDBBMAP[bbs[i]].begin();itrr != PREDBBMAP[bbs[i]].end(); itrr++)
  	{
-	//	errs()<<bbs[i]<<"->"<<*itrr<<" ";
 	VARKILL[bbs[i]].insert(VARKILL[*itrr].begin(),VARKILL[*itrr].end());
 	}
 	}
 	
 	}	
-	for (itr1 = VARKILL["if.else"].begin(); itr1 != VARKILL["if.else"].end(); itr1++)
- 		{
-	//	errs() <<" "<< *itr1;
-		}	
-		
 	auto it=VARKILL.find("if.end");
 	return it->second;
-	}
+	}//End of Killer Function
 	
 
 
 
 
 
-
+	//Function to Calculate the UEVAR of the Callee Function(The Flow Sensitive method)
 	set<string> availabler(Function &F)
 	{
 	
@@ -114,7 +103,6 @@ namespace {
 	for (auto& basic_block : F)
  	{count--;
 	bbs[count]=basic_block.getName().str();
-	// errs()<<bbs[count];
 	}
 	for (auto& basic_block : F)
  	{count++;}
@@ -137,44 +125,31 @@ namespace {
  			if ( it ==VARKILL[basic_block.getName().str()].end() )
 			{UEVAR[basic_block.getName().str()].insert(operand1);}
  		}
-            } // end for inst
-        } // end for basicblockwrite
-		
-	
- 		
-		
-		
-		
+            }
+        } 	
 	set<string>::iterator itrr;	
 	set<string> HOLDER;
-	//errs()<<"Printing After Uevararara:";	
 	set<string>::iterator itr4;	
-	for (itr4 = UEVAR["if.end"].begin(); itr4 != UEVAR["if.end"].end(); itr4++)
- 		{
-	//	errs() <<" "<< *itr4;
-		}	
 	for(int i=0;i<count;i++){
 		if(!PREDBBMAP[bbs[i]].empty()){
  	for (itrr = PREDBBMAP[bbs[i]].begin();itrr != PREDBBMAP[bbs[i]].end(); itrr++)
  	{
-		
-		
 	UEVAR[bbs[i]].insert(UEVAR[*itrr].begin(),UEVAR[*itrr].end());	
 	set_difference(UEVAR[bbs[i]].begin(),UEVAR[bbs[i]].end(), VARKILL[bbs[i]].begin(),VARKILL[bbs[i]].end(),std::inserter(HOLDER, HOLDER.end()));
 	}
 	UEVAR[bbs[i]]=HOLDER;
 	HOLDER.clear();}
 	}
-	//	errs()<<"Printing After Uevararara:";	
 	set<string>::iterator itr5;	
-	for (itr5 = UEVAR["if.end"].begin(); itr5 != UEVAR["if.end"].end(); itr5++)
- 		{
-	//	errs() <<" "<< *itr5;
-		}	
 	set<string> HOLDER2;
 	set_difference(UEVAR["entry"].begin(),UEVAR["entry"].end(), VARKILL["entry"].begin(),VARKILL["entry"].end(),std::inserter(HOLDER2, HOLDER2.end()));	
 	return HOLDER2;
-	}
+	}// End of Available Function for the Calle Function
+	
+	
+	
+	
+	// This is the Function to calculate the Liveness of the Callee Function. Since this is the Context Sensitive way we cannot just recursively call Visitor Function. Currently hardcoded to fucntion "minitest()".
 void visitor1(Function &F,set<string> HOLDER3){
 	string func_name = "minitest1";
 	int count=0;
@@ -200,6 +175,7 @@ void visitor1(Function &F,set<string> HOLDER3){
 	BasicBlock* predecessor = *it;
 	PREDBBMAP[basic_block.getName().str()].insert(predecessor->getName().str());
 	}}
+	// Calculating the UEVAR and VARKILL
  	for (auto& basic_block : F)
  	{
 	for (auto& inst : basic_block)
@@ -228,18 +204,10 @@ void visitor1(Function &F,set<string> HOLDER3){
 			set<string>::iterator itr1;
   			for (itr1 = available.begin();itr1 != available.end(); itr1++)
 			{UEVAR[basic_block.getName().str()].insert(*itr1);}
-			
-			//errs()<<"\n"<<"----Liveness Analysis for the callee:----"<<"\n";
-			//visitor(H);
-			
-	 	//	auto it=VARKILL[basic_block.getName().str()].find(operand1);
- 		//	if ( it ==VARKILL[basic_block.getName().str()].end() )
-		//	{UEVAR[basic_block.getName().str()].insert(operand1);}
  		}
-            } // end for inst
-        } // end for basicblockwrite
-		
-	
+            }
+        }
+	//Calculating the Liveness Below
 	for(int i=0;i<count;i++){
 		LIVEOUT[bbs[i]];
 		if(i==0){LIVEOUT[bbs[i]]=HOLDER3;}
@@ -259,8 +227,7 @@ void visitor1(Function &F,set<string> HOLDER3){
 	i--;
 	}
 	}	
-		
-		
+	//Printing the UEVAR and VARKILL
 	for (auto& basic_block : F)
         {	
 	if (F.getName() != func_name) {continue;}	
@@ -284,10 +251,10 @@ void visitor1(Function &F,set<string> HOLDER3){
  		errs() << " "<< *itr2 ;
  		}
 		errs() <<"\n";
- 	} // end for basicblockread
-	}
+ 	}
+	}// End of Visitor 1
 	
-	
+	//The function to calculate the Interprocedural analysis Liveness of The Test() function. Currently hardcoded to caluclate for test() fucntion only.
 void visitor(Function &F){
 	string func_name = "test";
 	int count=0;
@@ -296,7 +263,6 @@ void visitor(Function &F){
 	map<string, set<string> > LIVEOUT;
 	map<string, set<string> > UEVAR;
 	map<string, set<string> > VARKILL;
-	set<string> basicwitharr;
         for (auto& basic_block : F)
         {	
 	if (F.getName() != func_name) {continue;}
@@ -310,6 +276,8 @@ void visitor(Function &F){
 	}
 	for (auto& basic_block : F)
  	{count++;}
+		
+	//Building the Precessor map
 	for (auto& basic_block : F){
 	for (auto it = pred_begin(&basic_block), et =pred_end(&basic_block); it != et; ++it){
 	BasicBlock* predecessor = *it;
@@ -317,9 +285,8 @@ void visitor(Function &F){
 		SUCCBBMAP[predecessor->getName().str()].insert(basic_block.getName().str());
 	}}
 	
-// 	for (auto& basic_block : F)
-// 	{
-	int j=0;
+		
+	//Calculating the UEVAR and VARKILL for the test() function
 	for (auto& inst : basic_block)
  	{
 		if(inst.getOpcode() == Instruction::Store){
@@ -346,18 +313,12 @@ void visitor(Function &F){
 			set<string>::iterator itr1;
   			for (itr1 = available.begin();itr1 != available.end(); itr1++)
 			{UEVAR[basic_block.getName().str()].insert(*itr1);}
-			basicwitharr.insert(basic_block.getName().str());
-			j++;
-	 	//	auto it=VARKILL[basic_block.getName().str()].find(operand1);
- 		//	if ( it ==VARKILL[basic_block.getName().str()].end() )
-		//	{UEVAR[basic_block.getName().str()].insert(operand1);}
  		}
-            } // end for inst
-  //    } // end for basicblockwrite
+            } 
 		
 	
 	
-	
+	// Calculating the Liveness
 	for(int i=0;i<count;i++){
 		LIVEOUT[bbs[i]];
 		}
@@ -377,7 +338,7 @@ void visitor(Function &F){
 	}
 	}
 	
-	
+	//Calculating and calling the function to calculate the Liveness for the calle function
 	for (auto& basic_block : F){
 	for (auto& inst : basic_block){
 	if(inst.getOpcode() == Instruction::Call){
@@ -391,7 +352,6 @@ void visitor(Function &F){
 			set<string>::iterator itrr1;
 			for (itrr1 = SUCCBBMAP[basic_block.getName().str()].begin();itrr1 != SUCCBBMAP[basic_block.getName().str()].end(); itrr1++)
  	{
-				//errs()<<"!!!!"<<*itrr1<<"!!!!";
 				set_difference(LIVEOUT[*itrr1].begin(),LIVEOUT[*itrr1].end(), VARKILL[*itrr1].begin(),VARKILL[*itrr1].end(),std::inserter(HOLDER4, HOLDER4.end()));
 	HOLDER4.insert(UEVAR[*itrr1].begin(),UEVAR[*itrr1].end());
 				HOLDER3.insert(HOLDER4.begin(),HOLDER4.end());
@@ -401,14 +361,7 @@ void visitor(Function &F){
 	visitor1(H,HOLDER3);	
 	}}}}	
 	
-	
-	
-	
-	
-	
-	
-	
-		
+	//Printing the IPA Liveness for the test() function
 	if (F.getName() == func_name){	
 	errs()<<"\n"<<"----Interprocedural Analysis for the Test():----"<<"\n";	}
 	for (auto& basic_block : F)
@@ -435,7 +388,7 @@ void visitor(Function &F){
  		errs() << " "<< *itr2 ;
  		}
 	errs() <<"\n";	
-	} // end for basicblockread
+	}
 	}
 
 
