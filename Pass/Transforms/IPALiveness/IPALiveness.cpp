@@ -392,7 +392,7 @@ void visitor(Function &F){
 
 
 // New PM implementation
-struct ValueNumberingPass : public PassInfoMixin<ValueNumberingPass> {
+struct IPALivenessPass : public PassInfoMixin<IPALivenessPass> {
 
   // The first argument of the run() function defines on what level
   // of granularity your pass will run (e.g. Module, Function).
@@ -417,13 +417,13 @@ struct ValueNumberingPass : public PassInfoMixin<ValueNumberingPass> {
 extern "C" ::llvm::PassPluginLibraryInfo LLVM_ATTRIBUTE_WEAK
 llvmGetPassPluginInfo() {
   return {
-    LLVM_PLUGIN_API_VERSION, "ValueNumberingPass", LLVM_VERSION_STRING,
+    LLVM_PLUGIN_API_VERSION, "IPALiveness", LLVM_VERSION_STRING,
     [](PassBuilder &PB) {
       PB.registerPipelineParsingCallback(
         [](StringRef Name, FunctionPassManager &FPM,
         ArrayRef<PassBuilder::PipelineElement>) {
-          if(Name == "value-numbering"){
-            FPM.addPass(ValueNumberingPass());
+          if(Name == "IPA-Liveness"){
+            FPM.addPass(IPALiveness());
             return true;
           }
           return false;
