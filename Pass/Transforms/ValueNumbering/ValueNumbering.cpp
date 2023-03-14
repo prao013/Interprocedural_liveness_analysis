@@ -296,7 +296,7 @@ void visitor(Function &F){
 	map<string, set<string> > LIVEOUT;
 	map<string, set<string> > UEVAR;
 	map<string, set<string> > VARKILL;
-	map<auto&, string> FUNCLIVE;
+	map<Function&, string> FUNCLIVE;
         for (auto& basic_block : F)
         {	
 	if (F.getName() != func_name) {continue;}
@@ -374,7 +374,7 @@ void visitor(Function &F){
 	}
 	}
 	if(FUNCLIVE.size()!=0){
-	map<auto&, string>::iterator iter;
+	map<Function&, string>::iterator iter;
 	for(iter= FUNCLIVE.begin(); iter != FUNCLIVE.end(); ++iter)
 	{
 		
