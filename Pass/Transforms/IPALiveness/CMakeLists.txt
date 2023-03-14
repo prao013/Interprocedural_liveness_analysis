@@ -11,6 +11,6 @@ add_library(LLVMIPALivenessPass MODULE IPALiveness.cpp)
 set_target_properties(LLVMIPALiveness PROPERTIES COMPILE_FLAGS "-D__GLIBCXX_USE_CXX11_ABI=0 ")
 #SET(CMAKE_MODULE_LINKER_FLAGS "-undefined dynamic_lookup")
 
-target_link_libraries(LLVMIPALiveness)
+target_link_libraries(LLVMIPALivenessPass)
 
 
