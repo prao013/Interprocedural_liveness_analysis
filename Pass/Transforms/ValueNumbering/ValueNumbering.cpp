@@ -387,8 +387,8 @@ void visitor(Function &F){
 	}
 	
 	}	
-		
-	errs()<<"\n"<<"----Interprocedural Analysis for the Test():----"<<"\n";	
+	if (F.getName() == func_name){	
+	errs()<<"\n"<<"----Interprocedural Analysis for the Test():----"<<"\n";	}
 	for (auto& basic_block : F)
        {	
 	if (F.getName() != func_name) {continue;}	
