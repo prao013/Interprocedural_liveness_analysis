@@ -296,7 +296,7 @@ void visitor(Function &F){
 	map<string, set<string> > LIVEOUT;
 	map<string, set<string> > UEVAR;
 	map<string, set<string> > VARKILL;
-	map<llvm::Function&, string> FUNCLIVE;
+	set<string> basicwitharr;
         for (auto& basic_block : F)
         {	
 	if (F.getName() != func_name) {continue;}
@@ -319,6 +319,7 @@ void visitor(Function &F){
 	
 // 	for (auto& basic_block : F)
 // 	{
+	int j=0;
 	for (auto& inst : basic_block)
  	{
 		if(inst.getOpcode() == Instruction::Store){
@@ -345,8 +346,8 @@ void visitor(Function &F){
 			set<string>::iterator itr1;
   			for (itr1 = available.begin();itr1 != available.end(); itr1++)
 			{UEVAR[basic_block.getName().str()].insert(*itr1);}
-			FUNCLIVE.insert({H,basic_block.getName().str()});
-			
+			basicwitharr.insert(basic_block.getName().str());
+			j++;
 	 	//	auto it=VARKILL[basic_block.getName().str()].find(operand1);
  		//	if ( it ==VARKILL[basic_block.getName().str()].end() )
 		//	{UEVAR[basic_block.getName().str()].insert(operand1);}
@@ -354,6 +355,8 @@ void visitor(Function &F){
             } // end for inst
   //    } // end for basicblockwrite
 		
+	
+	
 	
 	for(int i=0;i<count;i++){
 		LIVEOUT[bbs[i]];
@@ -373,16 +376,20 @@ void visitor(Function &F){
 	i--;
 	}
 	}
-	if(FUNCLIVE.size()!=0){
-	std::map<llvm::Function&, string>::iterator iter;
-	for(iter= FUNCLIVE.begin(); iter != FUNCLIVE.end(); ++iter)
-	{
-		
+	
+	
+	for (auto& basic_block : F){
+	for (auto& inst : basic_block){
+	if(inst.getOpcode() == Instruction::Call){
+	if (F.getName() == func_name){
+	errs()<<"\n"<<"----Liveness Analysis for the "<<iter->first<<" callee:----"<<"\n";
+	
+	Function* G= cast<CallInst>(inst).getCalledFunction();
+	Function& H=*G;
 	set<string> HOLDER3;
 	set<string> HOLDER4;
-	errs()<<"\n"<<"----Liveness Analysis for the "<<iter->first<<" callee:----"<<"\n";
 			set<string>::iterator itrr1;
-			for (itrr1 = SUCCBBMAP[iter->second].begin();itrr1 != SUCCBBMAP[iter->second].end(); itrr1++)
+			for (itrr1 = SUCCBBMAP[basic_block.getName().str()].begin();itrr1 != SUCCBBMAP[basic_block.getName().str()].end(); itrr1++)
  	{
 				//errs()<<"!!!!"<<*itrr1<<"!!!!";
 				set_difference(LIVEOUT[*itrr1].begin(),LIVEOUT[*itrr1].end(), VARKILL[*itrr1].begin(),VARKILL[*itrr1].end(),std::inserter(HOLDER4, HOLDER4.end()));
@@ -390,17 +397,18 @@ void visitor(Function &F){
 				HOLDER3.insert(HOLDER4.begin(),HOLDER4.end());
 				HOLDER4.clear();
 				errs()<<UEVAR[*itrr1].size();
-	}
+	}		
+	visitor1(H,HOLDER3);	
+	}}}}	
 	
-			
-			
-	visitor1(iter->first,HOLDER3);	
+	
+	
+	
+	
+	
+	
+	
 		
-	
-	}	
-		
-	
-	}	
 	if (F.getName() == func_name){	
 	errs()<<"\n"<<"----Interprocedural Analysis for the Test():----"<<"\n";	}
 	for (auto& basic_block : F)
