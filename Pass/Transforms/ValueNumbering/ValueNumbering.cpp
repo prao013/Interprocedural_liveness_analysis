@@ -357,7 +357,7 @@ void visitor(Function &F){
 				HOLDER4.clear();
 	}
 			
-			
+			errs()<<HOLDER3.size();
 			
 			visitor1(H,HOLDER3);
 			
