@@ -277,7 +277,7 @@ void visitor1(Function &F,set<string> HOLDER3){
  		{
 		errs() <<" "<< *itr1;
 		}
-	errs() <<"\n"<< "LIVEOUT:"<<"\n";
+	errs() <<"\n"<< "LIVEOUT:";
 	set<string>::iterator itr2;
  	for (itr2 = LIVEOUT[basic_block.getName().str()].begin(); itr2 != LIVEOUT[basic_block.getName().str()].end();itr2++)
  		{
