@@ -296,7 +296,7 @@ void visitor(Function &F){
 	map<string, set<string> > LIVEOUT;
 	map<string, set<string> > UEVAR;
 	map<string, set<string> > VARKILL;
-	map<Function&, BasicBlock&> FUNCLIVE;
+	map<Function&, string> FUNCLIVE;
         for (auto& basic_block : F)
         {	
 	if (F.getName() != func_name) {continue;}
@@ -345,7 +345,7 @@ void visitor(Function &F){
 			set<string>::iterator itr1;
   			for (itr1 = available.begin();itr1 != available.end(); itr1++)
 			{UEVAR[basic_block.getName().str()].insert(*itr1);}
-			FUNCLIVE[H].insert(basic_block);
+			FUNCLIVE[H].insert(basic_block.getName().str());
 			
 	 	//	auto it=VARKILL[basic_block.getName().str()].find(operand1);
  		//	if ( it ==VARKILL[basic_block.getName().str()].end() )
@@ -374,7 +374,7 @@ void visitor(Function &F){
 	}
 	
 	if(FUNCLIVE.size()!=0){
-	map<Function&, BasicBlock&>::iterator iter;
+	map<Function&, string>::iterator iter;
 	for(iter= FUNCLIVE.begin(); iter != FUNCLIVE.end(); ++iter)
 	{
 		
@@ -382,7 +382,7 @@ void visitor(Function &F){
 	set<string> HOLDER4;
 	errs()<<"\n"<<"----Liveness Analysis for the "<<iter->first<<" callee:----"<<"\n";
 			set<string>::iterator itrr1;
-			for (itrr1 = SUCCBBMAP[iter->second.getName().str()].begin();itrr1 != SUCCBBMAP[iter->second.getName().str()].end(); itrr1++)
+			for (itrr1 = SUCCBBMAP[iter->second].begin();itrr1 != SUCCBBMAP[iter->second].end(); itrr1++)
  	{
 				//errs()<<"!!!!"<<*itrr1<<"!!!!";
 				set_difference(LIVEOUT[*itrr1].begin(),LIVEOUT[*itrr1].end(), VARKILL[*itrr1].begin(),VARKILL[*itrr1].end(),std::inserter(HOLDER4, HOLDER4.end()));
