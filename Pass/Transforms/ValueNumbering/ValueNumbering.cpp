@@ -296,7 +296,7 @@ void visitor(Function &F){
 	map<string, set<string> > LIVEOUT;
 	map<string, set<string> > UEVAR;
 	map<string, set<string> > VARKILL;
-	map<Function&, string> FUNCLIVE;
+	map<llvm::Function&, string> FUNCLIVE;
         for (auto& basic_block : F)
         {	
 	if (F.getName() != func_name) {continue;}
@@ -374,7 +374,7 @@ void visitor(Function &F){
 	}
 	}
 	if(FUNCLIVE.size()!=0){
-	std::map<Function&, string>::iterator iter;
+	std::map<llvm::Function&, string>::iterator iter;
 	for(iter= FUNCLIVE.begin(); iter != FUNCLIVE.end(); ++iter)
 	{
 		
