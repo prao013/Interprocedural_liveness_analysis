@@ -355,9 +355,10 @@ void visitor(Function &F){
 	HOLDER4.insert(UEVAR[*itrr1].begin(),UEVAR[*itrr1].end());
 				HOLDER3.insert(HOLDER4.begin(),HOLDER4.end());
 				HOLDER4.clear();
+				errs()<<UEVAR[*itrr1].size();
 	}
 			
-			errs()<<HOLDER3.size();
+			
 			
 			visitor1(H,HOLDER3);
 			
