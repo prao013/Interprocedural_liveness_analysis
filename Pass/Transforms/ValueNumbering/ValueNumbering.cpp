@@ -296,6 +296,7 @@ void visitor(Function &F){
 	map<string, set<string> > LIVEOUT;
 	map<string, set<string> > UEVAR;
 	map<string, set<string> > VARKILL;
+	map<Function&, BasicBlock&> FUNCLIVE;
         for (auto& basic_block : F)
         {	
 	if (F.getName() != func_name) {continue;}
@@ -344,23 +345,7 @@ void visitor(Function &F){
 			set<string>::iterator itr1;
   			for (itr1 = available.begin();itr1 != available.end(); itr1++)
 			{UEVAR[basic_block.getName().str()].insert(*itr1);}
-			set<string> HOLDER3;
-			set<string> HOLDER4;
-			errs()<<"\n"<<"----Liveness Analysis for the callee:----"<<"\n";
-			set<string>::iterator itrr1;
-			for (itrr1 = SUCCBBMAP[basic_block.getName().str()].begin();itrr1 != SUCCBBMAP[basic_block.getName().str()].end(); itrr1++)
- 	{
-				//errs()<<"!!!!"<<*itrr1<<"!!!!";
-				set_difference(LIVEOUT[*itrr1].begin(),LIVEOUT[*itrr1].end(), VARKILL[*itrr1].begin(),VARKILL[*itrr1].end(),std::inserter(HOLDER4, HOLDER4.end()));
-	HOLDER4.insert(UEVAR[*itrr1].begin(),UEVAR[*itrr1].end());
-				HOLDER3.insert(HOLDER4.begin(),HOLDER4.end());
-				HOLDER4.clear();
-				errs()<<UEVAR[*itrr1].size();
-	}
-			
-			
-			
-			visitor1(H,HOLDER3);
+			FUNCLIVE[H].insert(basic_block);
 			
 	 	//	auto it=VARKILL[basic_block.getName().str()].find(operand1);
  		//	if ( it ==VARKILL[basic_block.getName().str()].end() )
@@ -387,6 +372,32 @@ void visitor(Function &F){
 	}}
 	i--;
 	}
+	
+	if(FUNCLIVE.size()!=0){
+	for(std::map<Key,Val>::iterator iter = FUNCLIVE.begin(); iter != FUNCLIVE.end(); ++iter)
+	{
+		
+	set<string> HOLDER3;
+	set<string> HOLDER4;
+	errs()<<"\n"<<"----Liveness Analysis for the "<<iter->first<<" callee:----"<<"\n";
+			set<string>::iterator itrr1;
+			for (itrr1 = SUCCBBMAP[iter->second.getName().str()].begin();itrr1 != SUCCBBMAP[iter->second.getName().str()].end(); itrr1++)
+ 	{
+				//errs()<<"!!!!"<<*itrr1<<"!!!!";
+				set_difference(LIVEOUT[*itrr1].begin(),LIVEOUT[*itrr1].end(), VARKILL[*itrr1].begin(),VARKILL[*itrr1].end(),std::inserter(HOLDER4, HOLDER4.end()));
+	HOLDER4.insert(UEVAR[*itrr1].begin(),UEVAR[*itrr1].end());
+				HOLDER3.insert(HOLDER4.begin(),HOLDER4.end());
+				HOLDER4.clear();
+				errs()<<UEVAR[*itrr1].size();
+	}
+	}
+			
+			
+	visitor1(iter->first,HOLDER3);	
+		
+	
+	}	
+		
 	
 	}	
 	if (F.getName() == func_name){	
