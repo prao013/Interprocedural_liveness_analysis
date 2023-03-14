@@ -382,7 +382,7 @@ void visitor(Function &F){
 	for (auto& inst : basic_block){
 	if(inst.getOpcode() == Instruction::Call){
 	if (F.getName() == func_name){
-	errs()<<"\n"<<"----Liveness Analysis for the "<<iter->first<<" callee:----"<<"\n";
+	errs()<<"\n"<<"----Liveness Analysis for the call inside the "<<basic_block.getName().str()<<" Block:----"<<"\n";
 	
 	Function* G= cast<CallInst>(inst).getCalledFunction();
 	Function& H=*G;
